@@ -24,7 +24,7 @@ features <- read.table('C:/Users/I231112/Downloads/R_Class/3_data-cleaning/week_
 activityLabels = read.table('C:/Users/I231112/Downloads/R_Class/3_data-cleaning/week_4/Project/UCI HAR Dataset/activity_labels.txt')
 
 
-# Columns Names 
+# Assimilating Columns 
 colnames(x_train) <- features[,2] 
 colnames(y_train) <-"activityId"
 colnames(subject_train) <- "subjectId"
