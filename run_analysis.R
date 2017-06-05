@@ -35,12 +35,12 @@ colnames(subject_test) <- "subjectId"
 
 colnames(activityLabels) <- c('activityId','activityType')
 
-# Merging two data sets in one
-mrg_train <- cbind(y_train, subject_train, x_train)
-mrg_test <- cbind(y_test, subject_test, x_test)
-setAllInOne <- rbind(mrg_train, mrg_test)
+# Combining two data sets in one
+comb_train <- cbind(y_train, subject_train, x_train)
+comb_test <- cbind(y_test, subject_test, x_test)
+setAllInOne <- rbind(comb_train, comb_test)
 
-# Combining all in one data set
+# Merging all in one data set
 colNames <- colnames(setAllInOne)
 
 
@@ -52,16 +52,16 @@ mean_and_std <- (grepl("activityId" , colNames) |
 )
 
 
-setForMeanAndStd <- setAllInOne[ , mean_and_std == TRUE]
+set_MeanAndStd <- setAllInOne[ , mean_and_std == TRUE]
 
 
-setWithActivityNames <- merge(setForMeanAndStd, activityLabels,
+set_ActivityNames <- merge(set_MeanAndStd, activityLabels,
                               by='activityId',
                               all.x=TRUE)
 
 # Calculate Averge of the final result set
 
-secTidySet <- aggregate(. ~subjectId + activityId, setWithActivityNames, mean)
+secTidySet <- aggregate(. ~subjectId + activityId, set_ActivityNames, mean)
 secTidySet <- secTidySet[order(secTidySet$subjectId, secTidySet$activityId),]
 
 # writing to a filename
